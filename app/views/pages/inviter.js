@@ -1,9 +1,15 @@
+// Deps
+import classnames from 'classnames';
 import React from 'react/addons';
 import {Navigation} from 'react-router';
+
+// Components
 import Spinner from 'react-spinner';
+import Map from '../components/map'
+
+// Flux
 import FacebookStore from '../../stores/facebook-store.js';
 import SessionActions from '../../actions/session-actions.js';
-import classnames from 'classnames';
 
 let internals = {
   getStateFromStores() {
@@ -28,23 +34,23 @@ let Inviter  = React.createClass({
     SessionActions.logout();
   },
 
-  content() {
-    return <p>Finished Loading</p>
-  },
-
   render() {
     let inviterClasses = classnames({
       "inviter col-sm-12": true,
       "spinner-visible": this.state.loading
     })
 
-    let content = this.state.loading ? <Spinner /> : this.content();
+    let content = this.state.loading ? <Spinner /> : null;
 
     return (
       <div className={inviterClasses}>
         {content}
-        <div className="col-xs-3">Control Panel</div>
-        <div className="col-xs-9">Map</div>
+        <div className="row full-height">
+          <div className="col-xs-3 full-height">Control Panel</div>
+          <div className="col-xs-9 full-height">
+            <Map />
+          </div>
+        </div>
       </div>
     );
   },

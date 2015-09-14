@@ -12,10 +12,24 @@
 
 // Components
 @import "app";
+@import "pages/inviter";
+@import "components/map/index";
+@import "components/map/tile";
 @import "overrides";
 
 html, body {
   color: @eventercom-brand-primary;
   font-family: "Avenir-Next", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
+  height: 100%;
+}
+
+.app,
+#eventercom,
+.content {
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
 }

@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Eventercom - Intercom Invites</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     {% if process.env.NODE_ENV === 'production' %}
+      <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
       <link rel="stylesheet" href="/css/main.min.css">
     {% else %}
+      <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
       <link rel="stylesheet" href="/css/main.css">
     {% endif %}
   </head>
@@ -29,7 +31,7 @@
       </nav>
     {% endif %}
 
-    <div class="app">
+    <div class="app row">
       {% block content %}{% endblock %}
     </div>
 
@@ -39,8 +41,10 @@
       </script>
 
       {% if process.env.NODE_ENV === 'production' %}
+        <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
         <script src="/js/eventercom.min.js"></script>
       {% else %}
+        <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
         <script src="/js/eventercom.js"></script>
       {% endif %}
     {% endif %}
