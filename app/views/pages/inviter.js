@@ -6,6 +6,7 @@ import {Navigation} from 'react-router';
 // Components
 import Spinner from 'react-spinner';
 import Map from '../components/map'
+import ControlPanel from '../components/control-panel'
 
 // Flux
 import FacebookStore from '../../stores/facebook-store.js';
@@ -46,7 +47,9 @@ let Inviter  = React.createClass({
       <div className={inviterClasses}>
         {content}
         <div className="row full-height">
-          <div className="col-xs-3 full-height">Control Panel</div>
+          <div className="col-xs-3 full-height">
+            <ControlPanel user={this.props.user} />
+          </div>
           <div className="col-xs-9 full-height">
             <Map />
           </div>
