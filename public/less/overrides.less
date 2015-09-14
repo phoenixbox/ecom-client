@@ -1,9 +1,28 @@
-.navbar {
+.navbar-constraints {
+  width: 210px;
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 10px;
   @media (max-width: @screen-xs-max) {
   }
   @media (min-width: @screen-sm-min) {
-    margin: 0;
   }
   @media (min-width: @screen-lg-min) {
   }
+}
+.navbar.authed-navbar {
+  background-color: #ffffff;
+}
+.navbar.authed-navbar .container-fluid .navbar-brand {
+  .navbar-constraints;
+  .backgroundImage('../../img/common/eventercom_brand.png');
+}
+.navbar.party-navbar {
+  background-color: @eventercom-brand-primary;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.navbar.party-navbar .container-fluid .navbar-brand {
+  .navbar-constraints;
+  .backgroundImage('../../img/landing/eventercom_white.png');
 }

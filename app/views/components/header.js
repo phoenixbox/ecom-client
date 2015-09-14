@@ -11,7 +11,7 @@ let Header = React.createClass({
 
   render() {
     return (
-      <nav className="navbar party-navbar">
+      <nav className="navbar authed-navbar">
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#eventercom-navbar-collapse">
@@ -20,7 +20,7 @@ let Header = React.createClass({
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to={`/inviter`}>Eventercom</Link>
+            <Link className="navbar-brand" to={`/inviter`}></Link>
           </div>
           <div className="collapse navbar-collapse" id="eventercom-navbar-collapse">
             <ul className="nav navbar-nav">

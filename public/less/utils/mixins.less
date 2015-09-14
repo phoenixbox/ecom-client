@@ -1,4 +1,4 @@
-.backgroundImage(@src, @size: cover) {
+.backgroundImage(@src, @size: contain) {
   background-image: url(@src);
   background-repeat: no-repeat;
   background-size: @size;
@@ -11,7 +11,7 @@
 .italicize() {
   font-style: italic;
 }
-.eventercomButton(@border: transparent, @background: transparent) {
-  border: 1px solid @border;
+.eventercomButton(@thickness: 1px, @border: transparent, @background: transparent) {
+  border: @thickness solid @border;
   background-color: @background;
 }
