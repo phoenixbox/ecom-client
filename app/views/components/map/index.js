@@ -1,14 +1,17 @@
 import React from 'react/addons';
 import Tile from './tile';
 import Filters from './filters';
+import _ from 'lodash';
 
 let Map = React.createClass({
-  render() {
-    // <Filters />
+  propTypes: {
+    customers: React.PropTypes.array
+  },
 
+  render() {
     return (
       <div className="map row">
-        <Tile />
+        <Tile customers={this.props.customers} />
       </div>
     )
   }

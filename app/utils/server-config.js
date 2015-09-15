@@ -2,7 +2,8 @@ var Confidence = require('confidence');
 
 var ServerConfig = {
   api: {
-    events: "/v1/events"
+    events: "/v1/events",
+    customers: "/v1/customers"
   }
 }
 

@@ -1,6 +1,5 @@
 import React from 'react/addons';
 import {MAPBOX_KEY} from '../../../config';
-import Customers from '../../../fixtures/customers.json';
 import PinColors from './pin-colors.js';
 import _ from 'lodash';
 
@@ -12,15 +11,28 @@ const DEFAULT_ZOOM_LEVEL = 8
 
 let Tile = React.createClass({
 
+  propTypes: {
+    customers: React.PropTypes.array
+  },
+
   componentDidMount() {
     L.mapbox.accessToken = MAPBOX_KEY;
     this.map = L.mapbox.map('map', 'mapbox.streets')
                        .setView([INTERCOM_HQ.latitude, INTERCOM_HQ.longitude], DEFAULT_ZOOM_LEVEL);
     this.addMarker(INTERCOM_HQ.latitude, INTERCOM_HQ.longitude, PinColors.intercom)
+    this.setCustomerPins(this.props.customers)
+  },
 
-    _.each(Customers, (cust) => {
+  setCustomerPins(customers) {
+    _.each(customers, (cust) => {
       this.addMarker(cust.latitude, cust.longitude, PinColors.customer)
     })
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(this.props.customers, nextProps.customers)) {
+      this.setCustomerPins(nextProps.customers);
+    }
   },
 
   addMarker(lat, long, color) {
