@@ -5,12 +5,9 @@ import {RAILSRoot} from '../config.js'
 
 let internals = {
   getRequest(endpoint, params) {
-    debugger
     return request.get(`${RAILSRoot}${endpoint}`)
-                  .withCredentials()
                   .set('Accept', 'application/json')
                   .set('Authorization', params.access_token)
-                  .send(params)
   }
 }
 let EventsService = {

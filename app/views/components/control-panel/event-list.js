@@ -21,7 +21,14 @@ let EventList = React.createClass({
 
   componentDidMount() {
     EventsStore.addChangeListener(this._onChange)
-    EventsActions.init(this.props.user);
+  },
+
+  componentWillReceiveProps(nextProps) {
+    // If its receiving the user for the first time
+    let nextUser = nextProps.user;
+    if (_.isEmpty(this.props.user) && nextUser && nextUser.access_token) {
+      EventsActions.init(nextUser);
+    }
   },
 
   componentWillUnmount() {
@@ -32,13 +39,15 @@ let EventList = React.createClass({
     let events = this.state.events;
 
     if (events.length) {
-      let events = _.map(events, (e, i) => {
-        return <li className="col-xs-6"><EventCard event={e} /></li>
+      let eventNodes = _.map(events, (event, i) => {
+        return (
+          <li key={i} className="col-xs-12 col-sm-6"><EventCard {...event} /></li>
+        )
       })
 
       return (
         <ul className="list">
-          {events}
+          {eventNodes}
         </ul>
       )
     }

@@ -47,10 +47,10 @@ let Inviter  = React.createClass({
       <div className={inviterClasses}>
         {content}
         <div className="row full-height">
-          <div className="col-xs-3 full-height">
+          <div className="col-xs-5 full-height">
             <ControlPanel user={this.props.user} />
           </div>
-          <div className="col-xs-9 full-height">
+          <div className="col-xs-7 full-height">
             <Map />
           </div>
         </div>

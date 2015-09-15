@@ -1,8 +1,10 @@
 import React from 'react/addons';
 import EventForm from './event-form.js';
 import EventList from './event-list.js';
+import _ from 'lodash';
 
 let ControlPanel = React.createClass({
+
   render() {
     return (
       <div className="control-panel row">

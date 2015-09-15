@@ -16,7 +16,7 @@ let EventActions = {
       } else {
         AppDispatcher.dispatch({
           actionType: EventConstants.EVENT_INIT,
-          data: resp.body
+          data: resp.body.events
         });
       }
     })

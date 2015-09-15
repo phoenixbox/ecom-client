@@ -6,7 +6,7 @@ import classnames from 'classnames';
 let EventCard = React.createClass({
   propTypes: {
     occasion: React.PropTypes.string,
-    invitedCount: React.PropTypes.number,
+    invited_count: React.PropTypes.number,
     year: React.PropTypes.number,
     month: React.PropTypes.number,
     day: React.PropTypes.number,
@@ -20,22 +20,28 @@ let EventCard = React.createClass({
       'day':this.props.day
     }
 
-    return moment().set(time).format('llll');
+    return moment().set(time).format('ll');
+  },
+
+  eventStatus() {
+    if (this.props.cancelled) {
+      return <div className="event-state">cancelled</div>
+    }
   },
 
   render() {
     let stripeClasses = classnames({
       'stripe': true,
-      'col-xs-1': true,
       'cancel': this.props.cancelled
     })
 
     return (
       <div className="event-card">
         <div className={stripeClasses}></div>
-        <div className="content col-xs-11">
+        <div className="content">
           <div className="title">{this.props.occassion}</div>
-          <div className="invited-count">{this.props.invitedCount}</div>
+          <div className="invited-count">{`Invite Count: ${this.props.invited_count}`}</div>
+          {this.eventStatus()}
           <div className="timestamp">{this.timestamp()}</div>
         </div>
       </div>
