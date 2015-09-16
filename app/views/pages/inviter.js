@@ -6,8 +6,9 @@ import _ from 'lodash';
 
 // Components
 import Spinner from 'react-spinner';
-import Map from '../components/map'
-import ControlPanel from '../components/control-panel'
+import Map from '../components/map';
+import ControlPanel from '../components/control-panel';
+import helpers from '../components/helpers';
 
 // Flux
 import FacebookStore from '../../stores/facebook-store.js';
@@ -39,8 +40,9 @@ let Inviter  = React.createClass({
 
   getInitialState() {
     return _.assign({
-      mapOrigin: INTERCOM_HQ,
-      radius: RADIUS
+      origin: INTERCOM_HQ,
+      radius: RADIUS,
+      sortOrder: 'asc'
     }, internals.getStateFromStores());
   },
 
@@ -73,6 +75,17 @@ let Inviter  = React.createClass({
     }
   },
 
+  componentDidUpdate(prevProps, prevState) {
+    let existingCustIds = _.map(prevState.customers,(cust) => {return cust.user_id})
+    let newCustIds = _.map(this.state.customers,(cust) => {return cust.user_id})
+    let sameMembers = _.isEmpty(_.xor(existingCustIds, newCustIds));
+
+    if (!sameMembers) {
+      let sortedCustomers = helpers.sortByDistanceWithOrder(this.state.customers, this.state.origin, this.state.sortOrder)
+      this.setState({sortedCustomers: sortedCustomers})
+    }
+  },
+
   render() {
     let inviterClasses = classnames({
       "inviter col-sm-12": true,
@@ -88,13 +101,15 @@ let Inviter  = React.createClass({
           <div className="col-xs-5 full-height">
             <ControlPanel user={this.props.user}
                      customers={this.state.customers}
-                        origin={this.state.mapOrigin}
+               sortedCustomers={this.state.sortedCustomers}
+                        origin={this.state.origin}
                         radius={this.state.radius}
                         updateRadius={this.updateRadius} />
           </div>
           <div className="col-xs-7 full-height">
             <Map customers={this.state.customers}
-                    origin={this.state.mapOrigin}
+           sortedCustomers={this.state.sortedCustomers}
+                    origin={this.state.origin}
                     radius={this.state.radius} />
           </div>
         </div>

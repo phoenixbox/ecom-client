@@ -1,4 +1,5 @@
 module.exports =  {
   intercom: '#499CE3',
-  customer: '#65CC93'
+  inside: '#1FBE00',
+  outside: '#FF433E'
 }

@@ -6,6 +6,7 @@ import _ from 'lodash';
 let Map = React.createClass({
   propTypes: {
     customers: React.PropTypes.array,
+    sortedCustomers: React.PropTypes.array,
     radius: React.PropTypes.number
   },
 
@@ -13,6 +14,7 @@ let Map = React.createClass({
     return (
       <div className="map row">
         <Tile customers={this.props.customers}
+        sortedCustomers={this.props.sortedCustomers}
                  radius={this.props.radius} />
       </div>
     )

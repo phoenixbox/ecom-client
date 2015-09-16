@@ -10,6 +10,10 @@ let CustomerList = React.createClass({
       latitude: React.PropTypes.string,
       longitude: React.PropTypes.string
     }),
+    sortedCustomers: React.PropTypes.shape({
+      user_id: React.PropTypes.number,
+      distance: React.PropTypes.number
+    }),
     sortOrder: React.PropTypes.oneOf(['asc', 'desc']),
     origin: React.PropTypes.shape({
       latitude: React.PropTypes.string,
@@ -18,14 +22,8 @@ let CustomerList = React.createClass({
     radius: React.PropTypes.number
   },
 
-  getInitialState() {
-    return {
-      sortedCustomers: []
-    }
-  },
-
   customerNodes() {
-    return _.map(this.state.sortedCustomers, (sortedCust, i) => {
+    return _.map(this.props.sortedCustomers, (sortedCust, i) => {
       let customer = _.find(this.props.customers, {user_id: sortedCust.id})
       let outsideRadius = sortedCust.distance > this.props.radius;
 
@@ -38,17 +36,6 @@ let CustomerList = React.createClass({
         </li>
       )
     })
-  },
-
-  componentWillReceiveProps(nextProps) {
-    let existingCustIds = _.map(this.props.customers,(cust) => {return cust.user_id})
-    let newCustIds = _.map(nextProps.customers,(cust) => {return cust.user_id})
-    let sameMembers = _.isEmpty(_.xor(existingCustIds, newCustIds));
-
-    if (!sameMembers) {
-      let sortedCustomers = helpers.sortByDistanceWithOrder(nextProps.customers, this.props.origin, this.props.sortOrder)
-      this.setState({sortedCustomers: sortedCustomers})
-    }
   },
 
   render() {

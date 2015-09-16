@@ -8,6 +8,7 @@ import _ from 'lodash';
 let ControlPanel = React.createClass({
   propTypes: {
     customers: React.PropTypes.array,
+    sortedCustomers: React.PropTypes.array,
     origin: React.PropTypes.shape({
       latitude: React.PropTypes.number,
       longitude: React.PropTypes.number,
@@ -30,6 +31,7 @@ let ControlPanel = React.createClass({
         <RadiusSlider value={this.props.radius}
                updateRadius={this.props.updateRadius} />
         <CustomerList customers={this.props.customers}
+                sortedCustomers={this.props.sortedCustomers}
                       sortOrder={this.state.sortOrder}
                          origin={this.props.origin}
                          radius={this.props.radius} />
