@@ -6,7 +6,13 @@ import CustomerStore from '../stores/customer-store.js';
 let CustomerActions = {
   init: function(profile) {
     CustomerStore.setLoading(true);
-
+    /**
+     * @param  access_token - As Authorization header
+     * @return array - Customer's
+     *   @return string - computed name
+     *   @return string - latitude
+     *   @return string - longitude
+    */
     CustomersService.getCustomers(profile).end((err, resp) => {
       if (err) {
         AppDispatcher.dispatch({
