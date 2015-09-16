@@ -7,12 +7,14 @@ const INTERCOM_HQ = {
   latitude: 53.338484,
   longitude: -6.2564565
 };
+const INTERCOM_BLUE = '#449AE6';
 const DEFAULT_ZOOM_LEVEL = 8
 
 let Tile = React.createClass({
 
   propTypes: {
-    customers: React.PropTypes.array
+    customers: React.PropTypes.array,
+    radius: React.PropTypes.number
   },
 
   componentDidMount() {
@@ -20,6 +22,7 @@ let Tile = React.createClass({
     this.map = L.mapbox.map('map', 'mapbox.streets')
                        .setView([INTERCOM_HQ.latitude, INTERCOM_HQ.longitude], DEFAULT_ZOOM_LEVEL);
     this.addMarker(INTERCOM_HQ.latitude, INTERCOM_HQ.longitude, PinColors.intercom)
+    this.addCircle();
     this.setCustomerPins(this.props.customers)
   },
 
@@ -32,7 +35,27 @@ let Tile = React.createClass({
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(this.props.customers, nextProps.customers)) {
       this.setCustomerPins(nextProps.customers);
+    } else if (this.props.radius != nextProps.radius) {
+      this.map.removeLayer(this.radiusCircle);
+      this.addCircle();
     }
+  },
+
+  addCircle() {
+    let circleOptions = {
+      stroke:	true,
+      color: INTERCOM_BLUE,
+      weight: 3,
+      opacity: 1,
+      fill:	true,
+      fillColor: INTERCOM_BLUE,
+      fillOpacity: 0.5
+    }
+    let meters = this.props.radius * 1000;
+    this.radiusCircle = L.circle( [INTERCOM_HQ.latitude, INTERCOM_HQ.longitude],
+      meters,
+      circleOptions
+    ).addTo(this.map);
   },
 
   addMarker(lat, long, color) {

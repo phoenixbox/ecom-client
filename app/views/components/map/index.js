@@ -12,7 +12,8 @@ let Map = React.createClass({
   render() {
     return (
       <div className="map row">
-        <Tile customers={this.props.customers} />
+        <Tile customers={this.props.customers}
+                 radius={this.props.radius} />
       </div>
     )
   }

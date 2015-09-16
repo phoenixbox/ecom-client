@@ -21,7 +21,7 @@ let CustomerNode = React.createClass({
     return (
       <div className="customer-node">
         <div className={stripeClasses}></div>
-        <div className="col-xs-1 index">{this.props.index+1}</div>
+        <div className="col-xs-1 index">{this.props.index}</div>
         <div className="col-xs-5 name">{this.props.name}</div>
         <div className="col-xs-1 user-id">{this.props.user_id}</div>
         <div className="col-xs-3 location">
