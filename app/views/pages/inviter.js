@@ -49,7 +49,8 @@ let Inviter  = React.createClass({
   },
 
   updateRadius(val) {
-    this.setState({radius: val})
+    // @{val} - array - [min,val,max]
+    this.setState({radius: val[1]})
   },
 
   componentDidMount() {
@@ -88,13 +89,13 @@ let Inviter  = React.createClass({
             <ControlPanel user={this.props.user}
                      customers={this.state.customers}
                         origin={this.state.mapOrigin}
-                        radius={RADIUS}
+                        radius={this.state.radius}
                         updateRadius={this.updateRadius} />
           </div>
           <div className="col-xs-7 full-height">
             <Map customers={this.state.customers}
                     origin={this.state.mapOrigin}
-                    radius={RADIUS} />
+                    radius={this.state.radius} />
           </div>
         </div>
       </div>

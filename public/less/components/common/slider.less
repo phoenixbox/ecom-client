@@ -1,0 +1,53 @@
+.radius-slider {
+  margin: 30px 0;
+  margin-top: 40px;
+}
+.radius-slider span {
+  font-size: 20px;
+  font-weight: bold;
+}
+.radius-slider span.decrement {
+  margin-right: 20px;
+}
+.radius-slider span.increment {
+  margin-left: 20px;
+}
+.slider {
+  display: inline-block;
+  top: -10px;
+  width: 79%;
+}
+.slider .bar {
+  height: 10px;
+  border-radius: 20px;
+}
+.slider .bar.bar-0 {
+  background-color: @eventercom-brand-primary;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.slider .bar.bar-1 {
+  background-color: @eventercom-text-secondary;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.slider .handle {
+  background-color: @eventercom-text-primary;
+  border-radius: 5px;
+  bottom: -14px;
+  height: 18px;
+  width: 30px;
+}
+.slider .handle-value {
+  background-color: @eventercom-brand-primary;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 3px 20px;
+  position: relative;
+  text-align: center;
+  top: -35px;
+  width: 95px;
+  display: inline-block;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
