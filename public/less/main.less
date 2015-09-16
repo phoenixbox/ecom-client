@@ -19,6 +19,8 @@
 @import "components/control-panel/index";
 @import "components/control-panel/event-list";
 @import "components/control-panel/event-card";
+@import "components/control-panel/customer-list";
+@import "components/control-panel/customer-node";
 @import "overrides";
 
 html, body {
@@ -36,4 +38,13 @@ html, body {
 
 .full-height {
   height: 100%;
+}
+.stripe {
+  width: 10px;
+  height: 100%;
+  float: left;
+  background-color: @eventercom-brand-primary;
+}
+.stripe.cancel {
+  background-color: @eventercom-danger;
 }

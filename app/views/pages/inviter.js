@@ -15,6 +15,12 @@ import CustomerStore from '../../stores/customer-store.js';
 import CustomerActions from '../../actions/customer-actions.js';
 import SessionActions from '../../actions/session-actions.js';
 
+const INTERCOM_HQ = {
+  latitude: 53.339374,
+  longitude: -6.257495
+}
+const RADIUS = 100;
+
 let internals = {
   getStateFromStores() {
     return {
@@ -32,11 +38,18 @@ let Inviter  = React.createClass({
   },
 
   getInitialState() {
-    return internals.getStateFromStores();
+    return _.assign({
+      mapOrigin: INTERCOM_HQ,
+      radius: RADIUS
+    }, internals.getStateFromStores());
   },
 
   signOut() {
     SessionActions.logout();
+  },
+
+  updateRadius(val) {
+    this.setState({radius: val})
   },
 
   componentDidMount() {
@@ -50,7 +63,9 @@ let Inviter  = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    // If its receiving the user for the first time
+    /*
+     Fetch customers when we have a logged in session access_token
+    */
     let nextUser = nextProps.user;
     if (_.isEmpty(this.props.user) && nextUser && nextUser.access_token) {
       CustomerActions.init(nextUser);
@@ -70,10 +85,16 @@ let Inviter  = React.createClass({
         {content}
         <div className="row full-height">
           <div className="col-xs-5 full-height">
-            <ControlPanel user={this.props.user} />
+            <ControlPanel user={this.props.user}
+                     customers={this.state.customers}
+                        origin={this.state.mapOrigin}
+                        radius={RADIUS}
+                        updateRadius={this.updateRadius} />
           </div>
           <div className="col-xs-7 full-height">
-            <Map customers={this.state.customers} />
+            <Map customers={this.state.customers}
+                    origin={this.state.mapOrigin}
+                    radius={RADIUS} />
           </div>
         </div>
       </div>

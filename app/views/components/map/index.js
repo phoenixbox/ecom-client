@@ -5,7 +5,8 @@ import _ from 'lodash';
 
 let Map = React.createClass({
   propTypes: {
-    customers: React.PropTypes.array
+    customers: React.PropTypes.array,
+    radius: React.PropTypes.number
   },
 
   render() {

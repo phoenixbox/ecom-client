@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 let _customers = [];
 let _isLoading = false;
+let _sortOrder = 'asc';
 
 let CustomerStore = _.assign({}, EventEmitter.prototype, {
   emitChange() {
