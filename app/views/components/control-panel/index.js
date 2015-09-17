@@ -1,5 +1,4 @@
 import React from 'react/addons';
-import EventForm from './event-form.js';
 import EventList from './event-list.js';
 import CustomerList from './customer-list.js';
 import RadiusSlider from './radius-slider';
@@ -26,7 +25,6 @@ let ControlPanel = React.createClass({
   render() {
     return (
       <div className="control-panel row">
-        <EventForm />
         <EventList user={this.props.user} />
         <RadiusSlider value={this.props.radius}
                updateRadius={this.props.updateRadius} />

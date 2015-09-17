@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import Slider from 'react-slider';
+import ReactSlider from 'react-slider';
 
 let RadiusSlider = React.createClass({
   propTypes: {
@@ -14,24 +14,25 @@ let RadiusSlider = React.createClass({
     return {
       min: 0,
       max: 300,
-      step: 5
+      step: 5,
+      value: 100
     };
   },
 
   render() {
+    let value = [this.props.min, this.props.value, this.props.max];
+
     return (
-      <div className="radius-slider">
-        <span className="decrement"> - </span>
-        <Slider
-          value={this.props.value}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
-          onChange={this.props.updateRadius}>
-          withBars={true}
-          <span className="current-value">{`${this.props.value} km`}</span>
-        </Slider>
-        <span className="increment"> + </span>
+      <div className="col-xs-12 radius-slider">
+        <ReactSlider defaultValue={100}
+                      value={value}
+                       min={this.props.min}
+                       max={this.props.max}
+                      step={this.props.step}
+                  onChange={this.props.updateRadius}
+                  withBars={true} >
+          <span className="handle-value">{`${this.props.value} km`}</span>
+        </ReactSlider>
       </div>
     )
   }

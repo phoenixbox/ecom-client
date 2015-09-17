@@ -1,22 +1,39 @@
 .radius-slider {
-  margin: 30px 0;
-  margin-top: 40px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  padding-top: 55px;
 }
-.radius-slider span {
+
+.radius-slider .marker {
   font-size: 20px;
   font-weight: bold;
+  color: white;
+  &:hover, &:active {
+    color: @eventercom-brand-primary;
+    text-decoration: none;
+  }
 }
-.radius-slider span.decrement {
+
+.radius-slider span.left-marker {
   margin-right: 20px;
 }
-.radius-slider span.increment {
+
+.radius-slider span.right-marker {
   margin-left: 20px;
 }
+
+/*
+ * Component Overrides
+ **/
+
 .slider {
   display: inline-block;
   top: -10px;
-  width: 79%;
+  width: 100%;
 }
+
 .slider .bar {
   height: 10px;
   border-radius: 20px;
@@ -31,22 +48,27 @@
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
+
 .slider .handle {
   background-color: @eventercom-text-primary;
   border-radius: 5px;
   bottom: -14px;
   height: 18px;
   width: 30px;
+  white-space: nowrap;
 }
+
 .slider .handle-value {
   background-color: @eventercom-brand-primary;
+  color: white;
+  font-weight: @fontWeight-5;
   border-radius: 5px;
   font-size: 15px;
   padding: 3px 20px;
   position: relative;
   text-align: center;
   top: -35px;
-  width: 95px;
+  min-width: 96px;
   display: inline-block;
   left: 50%;
   transform: translate(-50%, 0);

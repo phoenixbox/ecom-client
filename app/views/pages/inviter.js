@@ -51,8 +51,7 @@ let Inviter  = React.createClass({
   },
 
   updateRadius(val) {
-    // @{val} - array - [min,val,max]
-    this.setState({radius: val[1]})
+    this.setState({radius: val})
   },
 
   componentDidMount() {
@@ -88,7 +87,7 @@ let Inviter  = React.createClass({
 
   render() {
     let inviterClasses = classnames({
-      "inviter col-sm-12": true,
+      "inviter row": true,
       "spinner-visible": this.state.loading
     })
 
@@ -97,7 +96,7 @@ let Inviter  = React.createClass({
     return (
       <div className={inviterClasses}>
         {content}
-        <div className="row full-height">
+        <div className="col-sm-12 full-height">
           <div className="col-xs-5 full-height">
             <ControlPanel user={this.props.user}
                      customers={this.state.customers}
