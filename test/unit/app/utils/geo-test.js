@@ -45,7 +45,6 @@ describe('Geo', () => {
     it('calculates the distance between Intercom & Bray', () => {
       let result = Geo.calculateDistance(locations.bray, locations.intercom)
       let target = 18.36;
-      console.log('HELPERS: ', helpers);
       let margins = helpers.marginCalc(target, CONFIDENCE);
 
       assert.isTrue(helpers.between(result, margins))

@@ -13,8 +13,8 @@ let RadiusSlider = React.createClass({
   getDefaultProps() {
     return {
       min: 0,
-      max: 200,
-      step: 10
+      max: 300,
+      step: 5
     };
   },
 

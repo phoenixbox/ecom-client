@@ -1,6 +1,7 @@
 import React from 'react/addons';
 import {MAPBOX_KEY} from '../../../config';
 import PinColors from './pin-colors.js';
+import MapHelpers from './helpers.js';
 import _ from 'lodash';
 
 const INTERCOM_HQ = {
@@ -35,35 +36,23 @@ let Tile = React.createClass({
     L.mapbox.accessToken = MAPBOX_KEY;
     this.map = L.mapbox.map('map', 'mapbox.streets')
                        .setView([INTERCOM_HQ.latitude, INTERCOM_HQ.longitude], DEFAULT_ZOOM_LEVEL);
+    this.customerLayer = L.mapbox.featureLayer().addTo(this.map);
     this.addMarker(INTERCOM_HQ.latitude, INTERCOM_HQ.longitude, PinColors.intercom)
     this.addCircle();
-    this.setCustomerPins(this.props.customers)
+    this.setCustomerPins(this.props.customers, this.props.sortedCustomers, this.props.radius)
   },
 
-  setCustomerPins(customers) {
-    _.each(customers, (cust) => {
-      let color = PinColors.intercom;
-      let sortedCust = _.find(this.props.sortedCustomers, {user_id: cust.user_id})
-
-      if (sortedCust) {
-        color = sortedCust.distance < radius ? PinColors.inside : PinColors.outside;
-      }
-
-      this.addMarker(cust.latitude, cust.longitude, color)
-    }, this)
+  setCustomerPins(customers, sortedCustomers, radius) {
+    let geoJson = MapHelpers.buildGeoJson(customers, sortedCustomers, radius)
+    this.customerLayer.setGeoJSON(geoJson);
   },
 
   componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(this.props.customers, nextProps.customers)) {
-      this.setCustomerPins(nextProps.customers);
+    if (!_.isEqual(this.props.customers, nextProps.customers) || !_.isEqual(this.props.sortedCustomers, nextProps.sortedCustomers)) {
+      this.setCustomerPins(nextProps.customers, nextProps.sortedCustomers, nextProps.radius);
     } else if (this.props.radius != nextProps.radius) {
-      this.map.removeLayer(this.radiusCircle);
-      this.addCircle();
-      _.each(this.state.markers, (m) => {
-        this.map.removeLayer(m)
-      })
-
-      this.setCustomerPins(nextProps.customers);
+      this.radiusCircle.setRadius(MapHelpers.kmRadius(nextProps.radius));
+      this.setCustomerPins(nextProps.customers, nextProps.sortedCustomers, nextProps.radius);
     }
   },
 
@@ -77,9 +66,8 @@ let Tile = React.createClass({
       fillColor: INTERCOM_BLUE,
       fillOpacity: 0.5
     }
-    let meters = this.props.radius * 1000;
     this.radiusCircle = L.circle( [INTERCOM_HQ.latitude, INTERCOM_HQ.longitude],
-      meters,
+      MapHelpers.kmRadius(this.props.radius),
       circleOptions
     ).addTo(this.map);
   },
@@ -91,10 +79,6 @@ let Tile = React.createClass({
         }),
         draggable: false
     }).addTo(this.map);
-    let markers = _.cloneDeep(this.state.markers)
-    markers.push(marker)
-
-    this.setState({markers: markers})
   },
 
   render() {

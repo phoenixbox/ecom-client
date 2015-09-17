@@ -37,11 +37,6 @@ const INTERCOM_HQ = {
 }
 
 describe('helpers', function () {
-  describe('#uniqueCustomers', function() {
-    xit('reduces collection to users with unique ids', function () {
-
-    });
-  })
   describe('#sortByDistance', function () {
     it('returns an array of objects sorted by distance ', function () {
       let result = helpers.sortByDistanceWithOrder(CUSTOMER_SAMPLE, INTERCOM_HQ, 'asc');
