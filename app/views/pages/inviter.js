@@ -97,7 +97,7 @@ let Inviter  = React.createClass({
       <div className={inviterClasses}>
         {content}
         <div className="col-sm-12 full-height">
-          <div className="col-xs-5 full-height">
+          <div className="col-xs-12 col-sm-5 full-height">
             <ControlPanel user={this.props.user}
                      customers={this.state.customers}
                sortedCustomers={this.state.sortedCustomers}
@@ -105,7 +105,7 @@ let Inviter  = React.createClass({
                         radius={this.state.radius}
                         updateRadius={this.updateRadius} />
           </div>
-          <div className="col-xs-7 map-container">
+          <div className="col-xs-12 col-sm-7 map-container">
             <Map customers={this.state.customers}
            sortedCustomers={this.state.sortedCustomers}
                     origin={this.state.origin}

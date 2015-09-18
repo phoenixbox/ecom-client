@@ -1,6 +1,9 @@
 .customer-list {
-  height: 810px;
   display: inline-block;
+
+  @media (max-width: @screen-xs-max) {
+    height: auto !important;
+  };
 }
 .customer-list ul.list {
   height: 100%;

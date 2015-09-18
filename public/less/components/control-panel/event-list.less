@@ -1,5 +1,9 @@
 .event-list {
   min-height: 220px;
+
+  @media (max-width: @screen-xs-max) {
+    padding: 10px;
+  };
 }
 .event-list ul.list {
   display: inline-block;
@@ -8,6 +12,10 @@
 }
 .event-list ul.list li {
   list-style: none;
+
+  @media (max-width: @screen-xs-max) {
+    padding: 0px;
+  };
 }
 .event-list.spinner-visible {
   position: relative;

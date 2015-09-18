@@ -8,4 +8,15 @@
 .inviter .map-container {
   padding-right: 0px;
   height: 96%;
+
+  @media (max-width: @screen-xs-max) {
+    height: 50%;
+    bottom: 0px;
+    position: fixed;
+    z-index: @zIndex-1;
+
+    -webkit-box-shadow: 0px -5px 24px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px -5px 24px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px -5px 24px 0px rgba(0,0,0,0.4);
+  };
 }

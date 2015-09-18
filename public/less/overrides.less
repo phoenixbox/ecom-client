@@ -7,6 +7,7 @@
   margin-top: 5px;
   margin-left: 10px;
   @media (max-width: @screen-xs-max) {
+    margin-left: 20px;
   }
   @media (min-width: @screen-sm-min) {
   }
@@ -18,6 +19,7 @@
   margin-bottom: 0;
   color: white;
   text-transform: uppercase;
+  border-radius: 0;
 
   a {
     color: white;
@@ -39,4 +41,10 @@
 .navbar.party-navbar .container-fluid .navbar-brand {
   .navbar-constraints;
   .backgroundImage('../../img/landing/eventercom_white.png');
+}
+.navbar-toggle {
+  background-color: white;
+}
+.navbar-toggle span {
+  background-color: @eventercom-brand-primary;
 }
