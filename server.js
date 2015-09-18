@@ -27,7 +27,7 @@ server.views({
 setInterval(function() {
     http.get("http://eventercom.herokuapp.com");
     http.get("http://eventercom-rails.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+}, 60000); // every minute
 
 var plugins = [
   {
