@@ -75,6 +75,8 @@ server.register(plugins
       method: 'GET',
       path: '/login',
       handler: function (request, reply) {
+        console.log('CREDS AT LOGIN: ', request.auth.credentials);
+
         var viewVars = internals.viewVars(request);
         reply.view('login.html', viewVars);
       }
