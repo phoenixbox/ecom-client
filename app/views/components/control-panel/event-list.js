@@ -53,10 +53,23 @@ let EventList = React.createClass({
     }
   },
 
+  content() {
+    if (this.state.loading) {
+      return [
+        <Spinner />,
+        <div className="loading-message">Loading Events</div>
+      ]
+    } else {
+      return this.buildEvents()
+    }
+  },
+
   render() {
     return (
       <div className="event-list col-xs-12">
-        {this.buildEvents()}
+        <div className="panel-section-header">Event List</div>
+        <div className="panel-section-sep"></div>
+        {this.content()}
       </div>
     )
   },
