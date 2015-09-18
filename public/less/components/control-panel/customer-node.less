@@ -10,3 +10,36 @@
 .customer-node .distance {
   float: right;
 }
+.customer-node .index {
+  float: left;
+  width: 30px;
+  height: 30px;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 600;
+  background-color: @eventercom-success;
+  .transition(background-color 500ms ease);
+
+  &.outside {
+    background-color: @eventercom-danger;
+  }
+}
+.customer-node .location {
+  text-align: left;
+  line-height: 30px;
+}
+.customer-node .name {
+  .no-wrap-truncate();
+  line-height: 30px;
+  font-size: 18px;
+}
+.customer-node .distance,
+.customer-node .user-id {
+  .italicize();
+  line-height: 32px;
+  font-size: 12px;
+  font-size: 12px;
+  color: @eventercom-text-secondary;
+}

@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import classnames from 'classnames';
+import _ from 'lodash'
 
 let CustomerNode = React.createClass({
   propTypes: {
@@ -13,22 +14,25 @@ let CustomerNode = React.createClass({
   },
 
   render() {
-    let stripeClasses = classnames({
-      'stripe': true,
-      'cancel': this.props.outsideRadius
+    let indexClasses = classnames({
+      'index': true,
+      'outside': this.props.outsideRadius
     })
+    let lat = _.round(this.props.latitude, 4);
+    let long = _.round(this.props.longitude, 4);
 
     return (
       <div className="customer-node">
-        <div className={stripeClasses}></div>
-        <div className="col-xs-1 index">{this.props.index}</div>
-        <div className="col-xs-5 name">{this.props.name}</div>
-        <div className="col-xs-1 user-id">{this.props.user_id}</div>
-        <div className="col-xs-3 location">
-          <div className="latitude">{`Lat: ${this.props.latitude}`}</div>
-          <div className="longitude">{`Long: ${this.props.longitude}`}</div>
+        <div className={indexClasses}>{this.props.index+1}</div>
+        <div className="col-xs-1 user-id">{`ID: ${this.props.user_id}`}</div>
+        <div className="col-xs-4 name">{this.props.name}</div>
+        <div className="col-xs-4 location">
+          <div className="row">
+            <div className="col-xs-6 lat">{`Lat: ${lat}`}</div>
+            <div className="col-xs-6 long">{`Long: ${long}`}</div>
+          </div>
         </div>
-        <div className="distance">{`${this.props.distance} km`}</div>
+        <div className="distance">{`${this.props.distance}km away`}</div>
       </div>
     )
   }
