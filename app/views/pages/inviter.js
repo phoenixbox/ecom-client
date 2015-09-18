@@ -105,7 +105,7 @@ let Inviter  = React.createClass({
                         radius={this.state.radius}
                         updateRadius={this.updateRadius} />
           </div>
-          <div className="col-xs-7 full-height">
+          <div className="col-xs-7 map-container">
             <Map customers={this.state.customers}
            sortedCustomers={this.state.sortedCustomers}
                     origin={this.state.origin}
