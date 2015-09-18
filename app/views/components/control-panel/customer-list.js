@@ -3,6 +3,22 @@ import helpers from '../helpers.js';
 import _ from 'lodash';
 import CustomerNode from './customer-node.js';
 
+function maxHeight() {
+  let app = document.getElementsByClassName('app')[0];
+  let list = document.getElementsByClassName('event-list')[0];
+  let slider = document.getElementsByClassName('radius-slider')[0];
+  let header = document.getElementsByClassName('navbar')[0];
+
+  if (app && header && slider && list) {
+    return app.getBoundingClientRect().height
+           - header.getBoundingClientRect().height
+           - list.getBoundingClientRect().height
+           - slider.getBoundingClientRect().height;
+  } else {
+    return 0;
+  }
+}
+
 let CustomerList = React.createClass({
   propTypes: {
     customers: React.PropTypes.shape({
@@ -40,9 +56,11 @@ let CustomerList = React.createClass({
 
   render() {
     return (
-      <ul className="customer-list">
-        {this.customerNodes()}
-      </ul>
+      <div className="customer-list" style={{height: `${maxHeight()}px`}}>
+        <ul className="list">
+          {this.customerNodes()}
+        </ul>
+      </div>
     )
   }
 })
