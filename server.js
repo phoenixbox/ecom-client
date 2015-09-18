@@ -113,7 +113,7 @@ var internals = {
   },
 
   pluckAuthAttrs: function(profile) {
-    var authAttrs = ['access_token'];
+    var authAttrs = ['access_token', 'uuid', 'name', 'email'];
 
     return _.reduce(profile, function(memo, val, key) {
       if (_.contains(authAttrs, key)) {
