@@ -24,6 +24,9 @@ let RadiusSlider = React.createClass({
 
     return (
       <div className="col-xs-12 radius-slider">
+        <div className="panel-section-header">Range Control</div>
+        <div className="panel-section-sep"></div>
+        <div className="instructions">Drag the slider to change the geographical range</div>
         <ReactSlider defaultValue={100}
                       value={value}
                        min={this.props.min}
