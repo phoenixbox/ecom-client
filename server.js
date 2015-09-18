@@ -4,6 +4,7 @@ var server = new Hapi.Server();
 var path = require('path');
 var config = require('config');
 var url = require('url');
+var http = require("http");
 
 server.connection({
   host: '0.0.0.0',
@@ -21,6 +22,12 @@ server.views({
     isPretty: true
   }
 });
+
+// Prevent Sleeping Dynos
+setInterval(function() {
+    http.get("http://eventercom.herokuapp.com");
+    http.get("http://eventercom-rails.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
 
 var plugins = [
   {
