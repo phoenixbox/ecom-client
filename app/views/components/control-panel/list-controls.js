@@ -23,21 +23,21 @@ let ListControls = React.createClass({
 
     return (
       <div className="list-controls col-xs-12">
-        <div className="col-xs-4 show-control">
+        <div className="col-xs-12 col-sm-4 control">
           <label>Show customers:</label>
           <div className="btn-group" role="group">
             <button className={allClasses} onClick={_.partial(this.props.updateControl, 'showAll', true)}>All</button>
             <button className={matchesClasses} onClick={_.partial(this.props.updateControl, 'showAll', false)}>{`Within ${this.props.radius}km`}</button>
           </div>
         </div>
-        <div className="col-xs-4 filter-control">
+        <div className="col-xs-12 col-sm-4 control">
           <label>Sort by:</label>
           <div className="btn-group" role="group">
             <button className={idButtonClasses} onClick={_.partial(this.props.updateControl, 'sortBy', 'id')}>ID</button>
             <button className={distanceClasses} onClick={_.partial(this.props.updateControl, 'sortBy', 'distance')}>Distance</button>
           </div>
         </div>
-        <div className="col-xs-4 sort-control">
+        <div className="col-xs-12 col-sm-4 control">
           <label>Order by:</label>
           <div className="btn-group" role="group">
             <button className={ascClasses} onClick={_.partial(this.props.updateControl, 'sortOrder', 'asc')}>Asc</button>

@@ -3,10 +3,24 @@
   margin: 20px 0;
   border-bottom: 1px solid @eventercom-text-secondary;
   padding-bottom: 25px;
+
+  @media (max-width: @screen-xs-max) {
+    .btn-group {
+      width: 100%;
+    }
+
+    .control {
+      margin-bottom: 10px;
+    }
+  };
 }
 .list-controls button {
   color: @eventercom-brand-primary;
-  .eventercomButton(1px, @eventercom-brand-primary, transparent)
+  .eventercomButton(1px, @eventercom-brand-primary, transparent);
+
+  @media (max-width: @screen-xs-max) {
+    width: 50%;
+  }
 }
 .list-controls button.active {
   color: white;
