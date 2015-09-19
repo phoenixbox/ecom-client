@@ -41,7 +41,7 @@ let EventList = React.createClass({
     if (events.length) {
       let eventNodes = _.map(events, (event, i) => {
         return (
-          <li key={i} className="col-xs-12 col-sm-6"><EventCard {...event} /></li>
+          <li key={i} className="col-xs-12 col-sm-6"><EventCard key={`card-${i}`} {...event} /></li>
         )
       })
 

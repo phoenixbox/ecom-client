@@ -14,15 +14,8 @@ const DEFAULT_ZOOM_LEVEL = 8
 let Tile = React.createClass({
 
   propTypes: {
-    customers: React.PropTypes.shape({
-      name: React.PropTypes.string,
-      latitude: React.PropTypes.string,
-      longitude: React.PropTypes.string
-    }),
-    sortedCustomers: React.PropTypes.shape({
-      user_id: React.PropTypes.number,
-      distance: React.PropTypes.number
-    }),
+    customers: React.PropTypes.array,
+    sortedCustomers: React.PropTypes.array,
     radius: React.PropTypes.number
   },
 

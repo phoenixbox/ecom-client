@@ -42,8 +42,17 @@ let Inviter  = React.createClass({
     return _.assign({
       origin: INTERCOM_HQ,
       radius: RADIUS,
-      sortOrder: 'asc'
+      sortOrder: 'asc',
+      sortBy: 'id',
+      showAll: true
     }, internals.getStateFromStores());
+  },
+
+  updateControl(prop, value, e) {
+    let state = _.cloneDeep(this.state);
+    state[prop] = value;
+
+    this.setState(state)
   },
 
   signOut() {
@@ -103,7 +112,11 @@ let Inviter  = React.createClass({
                sortedCustomers={this.state.sortedCustomers}
                         origin={this.state.origin}
                         radius={this.state.radius}
-                        updateRadius={this.updateRadius} />
+                       sortBy={this.state.sortBy}
+                       showAll={this.state.showAll}
+                     sortOrder={this.state.sortOrder}
+                 updateControl={this.updateControl}
+                  updateRadius={this.updateRadius} />
           </div>
           <div className="col-xs-12 col-sm-7 map-container">
             <Map customers={this.state.customers}

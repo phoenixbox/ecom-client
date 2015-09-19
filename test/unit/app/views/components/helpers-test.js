@@ -35,11 +35,9 @@ const INTERCOM_HQ = {
   latitude: 53.339374,
   longitude: -6.257495
 }
-
 describe('helpers', function () {
   describe('#sortByDistance', function () {
     it('returns an array of objects sorted by distance ', function () {
-      let result = helpers.sortByDistanceWithOrder(CUSTOMER_SAMPLE, INTERCOM_HQ, 'asc');
       let target = [
         {
           "distance": 41.76,
@@ -58,8 +56,45 @@ describe('helpers', function () {
           "id": 2
         }
       ]
+      let result = helpers.sortByDistanceWithOrder(CUSTOMER_SAMPLE, INTERCOM_HQ, 'asc');
 
       assert.deepEqual(result, target)
     });
   });
+  describe('#filterByRange', function () {
+    it('restricts the list to a provided range', function () {
+      let CUSTOMER_INPUT = [
+        {
+          "distance": 41.76,
+          "id": 12
+        },
+        {
+          "distance": 188.96,
+          "id": 3
+        },
+        {
+          "distance": 313.26,
+          "id": 1
+        },
+        {
+          "distance": 324.38,
+          "id": 2
+        }
+      ]
+
+      let target = [
+        {
+          "distance": 41.76,
+          "id": 12
+        },
+        {
+          "distance": 188.96,
+          "id": 3
+        }
+      ]
+      let result = helpers.filterByRange(CUSTOMER_INPUT, 200);
+
+      assert.deepEqual(result, target);
+    });
+  })
 });

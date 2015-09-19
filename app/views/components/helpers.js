@@ -17,5 +17,10 @@ module.exports = {
       })
       .sortByOrder('distance', order)
       .value()
+  },
+  filterByRange(customers, range) {
+    return _.filter(customers, (customer) => {
+      return customer.distance <= range
+    })
   }
 }
