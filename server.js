@@ -109,7 +109,13 @@ module.exports.server = server;
 
 var internals = {
   viewVars: function(request) {
-    return request.auth.credentials ? internals.pluckAuthAttrs(request.auth.credentials.profile) : {};
+    var creds = request.auth.credentials ? internals.pluckAuthAttrs(request.auth.credentials.profile) : {};
+
+    if (process.env.NODE_ENV === 'production') {
+      _.assign(creds, {prod: true})
+    }
+
+    return creds
   },
 
   pluckAuthAttrs: function(profile) {
