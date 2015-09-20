@@ -16,11 +16,8 @@ import CustomerStore from '../../stores/customer-store.js';
 import CustomerActions from '../../actions/customer-actions.js';
 import SessionActions from '../../actions/session-actions.js';
 
-const INTERCOM_HQ = {
-  latitude: 53.339374,
-  longitude: -6.257495
-}
-const RADIUS = 100;
+// helpers
+import IntercomConfig from '../../utils/intercom-config'
 
 let internals = {
   getStateFromStores() {
@@ -40,8 +37,8 @@ let Inviter  = React.createClass({
 
   getInitialState() {
     return _.assign({
-      origin: INTERCOM_HQ,
-      radius: RADIUS,
+      origin: IntercomConfig.get('/INTERCOM_HQ'),
+      radius: IntercomConfig.get('/RADIUS'),
       sortOrder: 'asc',
       sortBy: 'id',
       showAll: true
