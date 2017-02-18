@@ -23,12 +23,6 @@ server.views({
   }
 });
 
-// Prevent Sleeping Dynos
-setInterval(function() {
-    http.get("http://eventercom.herokuapp.com");
-    http.get("http://eventercom-rails.herokuapp.com");
-}, 60000); // every minute
-
 var plugins = [
   {
     register: require('good'),
